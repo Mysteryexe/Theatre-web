@@ -1,4 +1,4 @@
-var mainMusic = new Audio("content/sounds/main.mp3");
+var mainMusic = new Audio("./content/sounds/main.mp3");
 mainMusic.loop = true;
 mainMusic.volume = 0.1;
 var isMusicPlaying = false;
@@ -14,16 +14,16 @@ function openMenu(menu) {
 		menu.classList.remove("cut");
 	}, 2000);
 
-	var cutSound = new Audio("content/sounds/cut.mp3");
+	var cutSound = new Audio("./content/sounds/cut.mp3");
 	cutSound.play();
 
 	setTimeout(() => {
 		if (menuname === "shows" || menuname === "about") {
-			var pageSound = new Audio("content/sounds/page.mp3");
+			var pageSound = new Audio("./content/sounds/page.mp3");
 			pageSound.play();
 		}
 		if (menuname === "shop") {
-			var pageSound = new Audio("content/sounds/wistle.mp3");
+			var pageSound = new Audio("./content/sounds/wistle.mp3");
 			pageSound.play();
 		}
 		fetch(menuname.toLowerCase() + ".html")
@@ -74,7 +74,7 @@ function backToMenu(menuButton) {
 			seat.addEventListener("click", function () {
 				if (seat.classList.contains("occupied")) return;
 				seat.classList.toggle("selected");
-				var fillsound = new Audio("content/sounds/fill.mp3");
+				var fillsound = new Audio("./content/sounds/fill.mp3");
 				fillsound.play();
 
 				updateSeatTotal(container, 5);
@@ -124,9 +124,9 @@ function updateSeatTotal(seatsContainer, pricePerSeat = 5) {
 function clicked(element) {
 	element.classList.add("clicked");
 	if (element.tagName == "SIGN") {
-		var signSound = new Audio("content/sounds/sign.mp3");
-		var buySound = new Audio("content/sounds/buy.mp3");
-		var winSound = new Audio("content/sounds/win.mp3");
+		var signSound = new Audio("./content/sounds/sign.mp3");
+		var buySound = new Audio("./content/sounds/buy.mp3");
+		var winSound = new Audio("./content/sounds/win.mp3");
 		signSound.play();
 		setTimeout(() => {
 			buySound.play();
@@ -160,7 +160,5 @@ function renderTotal() {
 	const totalDisplay = document.querySelector("#total");
 	if (totalDisplay) {
 		totalDisplay.innerText = `Total: $${currentTotal}`;
-	} else {
-		console.warn("Element with ID #total not found on page.");
 	}
 }

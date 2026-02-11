@@ -18,8 +18,8 @@ body {
 	font-family: "jetbrainsmono";
 	font-display: swap;
 	src:
-		url("/jetbrainsmono-regular-webfont.woff2") format("woff2"),
-		url("/jetbrainsmono-regular-webfont.woff") format("woff");
+		url("./jetbrainsmono-regular-webfont.woff2") format("woff2"),
+		url("./jetbrainsmono-regular-webfont.woff") format("woff");
 	font-weight: normal;
 	font-style: normal;
 }
@@ -27,8 +27,8 @@ body {
 	font-family: chaparralpro;
 	font-display: swap;
 	src:
-		url("/chaparralpro-semibold.otf") format("otf"),
-		url("/chaparralpro-semibold.otf") format("otf");
+		url("./chaparralpro-semibold.otf") format("otf"),
+		url("./chaparralpro-semibold.otf") format("otf");
 	font-weight: normal;
 	font-style: normal;
 }
