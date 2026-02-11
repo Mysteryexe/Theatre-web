@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KingsTheatre</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <wrapper>
+        <page class="flex center">
+            <ticketForm class="flex">
+                <closeText onclick="backToMenu(this)">
+                    <p class="big">Back to menu</p>
+                </closeText>
+                <number class="flex center">
+                    <p class="big">1496</p>
+                </number>
+                <ticketBody class="flex">
+                    <div class="seats" id="seats"></div>
+                    <group class="flex" style="width:70%;padding: 5% 5%;justify-content: center;
+    align-items: center;
+    flex-direction: column;">
+                        <!-- <p class="med title linedBottom">King's Theatre Ticket Form</p> -->
+                        <group>
+                            <p class="smallpadding big">Full Name</p>
+                            <input class="med" type="text" name="full_name" placeholder="Enter your full name" required>
+
+                            <p class="smallpadding big">Chosen Show</p>
+                            <input class="med" type="text" name="show_name" placeholder="Enter the show name" required>
+                        </group>
+                        <sign onclick="clicked(this)">
+                            <img src="/content/images/sign.png" alt="sign">
+                            <p>by signing im agreed to everything</p>
+                        </sign>
+                        <p id="total" class="smallpadding big">Total: $0</p>
+                    </group>
+                </ticketBody>
+                <number class="flex center">
+                    <p class="big">1496</p>
+                </number>
+                <cash><img src="/content/images/cash.png" alt="cash"></cash>
+                <cash style="rotate:20deg"><img src="/content/images/cash.png" alt="cash"></cash>
+                <redTicket><img src="/content/images/ticket.png" alt="ticket"></redTicket>
+                <writterHand><img src="/content/images/drawHand.png" alt="draw hand"></writterHand>
+            </ticketForm>
+        </page>
+    </wrapper>
+    <script src="/script.js"></script>
+</body>
+
+</html>

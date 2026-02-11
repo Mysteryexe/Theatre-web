@@ -1,0 +1,752 @@
+:root {
+	--color-text: #040404;
+	--color-invert: #000000;
+	--color-buttonbg: #c43838;
+	--color-marker: #953318;
+	--color-buttonbg2: rgba(125, 70, 70, 0.179);
+	--color-imdb: #fec135;
+}
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: max-content !important;
+	overflow-x: hidden;
+	background: #000000;
+}
+@font-face {
+	font-family: "jetbrainsmono";
+	font-display: swap;
+	src:
+		url("/jetbrainsmono-regular-webfont.woff2") format("woff2"),
+		url("/jetbrainsmono-regular-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: chaparralpro;
+	font-display: swap;
+	src:
+		url("/chaparralpro-semibold.otf") format("otf"),
+		url("/chaparralpro-semibold.otf") format("otf");
+	font-weight: normal;
+	font-style: normal;
+}
+wrapper {
+	position: relative;
+	background-color: rgb(0, 0, 0);
+	width: 100vw;
+	height: max-content;
+	display: flex;
+	align-content: center;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: nowrap;
+}
+page {
+	position: relative;
+	width: 100vw;
+	min-height: 100vh;
+	overflow: hidden;
+}
+.flexleft {
+	display: flex;
+	justify-content: flex-start;
+}
+.linedBottom {
+	border-bottom: 1px solid var(--color-text);
+}
+h1,
+h2 {
+	position: relative;
+	color: var(--color-text);
+	width: 100%;
+	font-family: chaparralpro;
+	text-align: center;
+	margin: 0px;
+	font-size: calc(0.5 * clamp(8vh, 5rem, 10vw));
+	cursor: default;
+	user-select: none;
+}
+p,
+table {
+	position: relative;
+	color: var(--color-text);
+	width: max-content;
+	font-family: "chaparralpro";
+	font-size: clamp(1.2rem, 1vw, 2rem);
+	margin: 0rem;
+	text-align: center;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+@keyframes openBook {
+	0% {
+		transform: scaleX(0.2) translateY(100vh);
+	}
+	100% {
+		transform: scaleX(1) translateY(0);
+	}
+}
+@keyframes closeBook {
+	0% {
+		transform: scaleX(1) translateY(0);
+	}
+	100% {
+		transform: scaleX(0.2) translateY(100vh);
+	}
+}
+@keyframes openBookHand {
+	0% {
+		transform: scaleX(2.5);
+	}
+	100% {
+		transform: scaleX(1);
+	}
+}
+closeText {
+	opacity: 0;
+	animation: fadeout 0.5s ease-in-out forwards;
+	animation-delay: 1.5s;
+	bottom: -15vh;
+	width: max-content;
+	height: auto;
+	position: absolute;
+	background-color: white;
+	padding: 0rem 2rem;
+	border: 1px solid var(--color-text);
+	cursor: pointer;
+	margin: auto;
+	left: 0;
+	right: 0;
+}
+blackEffect {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0;
+	user-select: none;
+	pointer-events: none;
+}
+images {
+	display: flex;
+	position: absolute;
+	box-sizing: border-box;
+	width: calc(1.2 * min(70vw, 70vh));
+	height: calc(1.2 * min(50vh, 70vw));
+	padding: 12px;
+	background-color: rgb(193, 193, 193);
+	overflow: hidden;
+}
+
+images group {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+}
+shop {
+	display: flex;
+	position: absolute;
+	box-sizing: border-box;
+	width: calc(0.7 * min(70vw, 70vh));
+	height: calc(1.3 * min(50vh, 70vw));
+	padding: 2rem;
+	background-color: rgb(255, 255, 255);
+	transform: scaleX(0.2) translateY(100vh);
+	animation: openBook 1s ease-in-out forwards 1;
+	animation-delay: 0.2s;
+	border-radius: 2rem;
+}
+.med.flex.center {
+	cursor: pointer;
+}
+#total {
+	position: fixed;
+	bottom: 2rem;
+}
+shop.closed {
+	animation: closeBook 1s ease-in-out forwards 1;
+}
+:has(shop.closed) newsPaperBoy {
+	animation: getOut 1s ease-in-out forwards 1;
+}
+:has(book:not(.closed)) blackEffect,
+:has(ticketform:not(.closed)) blackEffect,
+:has(shop:not(.closed)) blackEffect {
+	animation: fadeout 2s ease-in-out forwards;
+	pointer-events: all;
+}
+:has(book.closed) blackEffect,
+:has(ticketform.closed) blackEffect,
+:has(shop.closed) blackEffect {
+	animation: fadeIn 2s ease-in-out forwards;
+	pointer-events: none;
+}
+book {
+	transform: scaleX(0.2) translateY(100vh);
+	display: block;
+	position: absolute;
+	box-sizing: border-box;
+	width: calc(1.2 * min(70vw, 70vh));
+	height: calc(1.2 * min(50vh, 70vw));
+	background-color: rgb(193, 193, 193);
+	animation: openBook 1s ease-in-out forwards 1;
+	animation-delay: 0.2s;
+}
+book.closed {
+	animation: closeBook 1s ease-in-out forwards 1;
+}
+bookPage,
+images {
+	position: relative;
+	width: 50%;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 5%;
+	background-color: white;
+	border: 1px solid var(--color-text);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+bookPage img,
+images img {
+	height: 100%;
+	width: min-content;
+	width: 75%;
+	display: block;
+	position: relative;
+	box-sizing: border-box;
+	filter: saturate(0);
+}
+bookPage p,
+images p {
+	width: 100%;
+}
+@keyframes getIn {
+	0% {
+		transform: translateX(-200%);
+	}
+	100% {
+		transform: translateX(0%);
+	}
+}
+@keyframes getOut {
+	100% {
+		transform: translateX(-200%);
+	}
+	0% {
+		transform: translateX(0%);
+	}
+}
+newsPaperBoy {
+	transform: translateX(-200%);
+	box-sizing: border-box;
+	position: absolute;
+	bottom: -50%;
+	left: -90%;
+	width: 110%;
+	height: 100%;
+	display: block;
+	animation: getIn 1s ease-in-out forwards 1;
+}
+hand {
+	transform: scaleX(2.5);
+	box-sizing: border-box;
+	position: absolute;
+	top: 50%;
+	width: 36%;
+	height: 80%;
+	display: block;
+	animation: openBookHand 1s ease-in-out forwards 1;
+	animation-delay: 0.2s;
+}
+hand img,
+writterHand img,
+sign img,
+cash img,
+redTicket img,
+newsPaperBoy img {
+	height: auto;
+	width: 100%;
+	display: block;
+	box-sizing: border-box;
+	position: relative;
+}
+cash {
+	position: absolute;
+	width: 60%;
+	rotate: 35deg;
+	height: auto;
+	bottom: 0;
+	left: -30%;
+	transition: opacity 2s ease-in-out;
+	opacity: 0;
+	pointer-events: none;
+	transition-delay: 1s;
+}
+redTicket {
+	position: absolute;
+	width: 30%;
+	rotate: 35deg;
+	height: auto;
+	top: 0;
+	right: 0%;
+	opacity: 0;
+	transition: opacity 2s ease-in-out;
+	transition-delay: 3s;
+	pointer-events: none;
+}
+ticketForm {
+	transform: scaleX(0.2) translateY(100vh);
+	display: block;
+	position: absolute;
+	box-sizing: border-box;
+	width: calc(1.3 * min(70vw, 70vh));
+	height: calc(1 * min(50vh, 70vw));
+	background-color: rgb(255, 255, 255);
+	animation: openBook 1s ease-in-out forwards 1;
+	animation-delay: 0.2s;
+	animation-delay: 0.2s;
+	border-radius: 2vh;
+}
+ticketForm.closed {
+	animation: closeBook 1s ease-in-out forwards 1;
+}
+ticketBody {
+	display: block;
+	position: relative;
+	box-sizing: border-box;
+	width: 80%;
+	height: 100%;
+	padding: 1rem;
+}
+writterHand {
+	box-sizing: border-box;
+	position: absolute;
+	top: 50%;
+	right: -50%;
+	width: 70%;
+	height: 80%;
+	display: block;
+	transition: opacity 2s ease-in-out;
+	transition-delay: 2s;
+}
+:has(sign.clicked) writterHand {
+	opacity: 0;
+}
+:has(sign.clicked) cash,
+:has(sign.clicked) redTicket {
+	opacity: 1;
+}
+number {
+	width: 10%;
+	height: 100%;
+	writing-mode: vertical-lr;
+	transform: rotate(180deg);
+}
+ticket {
+	position: relative;
+	display: block;
+	box-sizing: border-box;
+	background-color: #ffffff;
+	padding: 1rem 1rem 1rem 2rem;
+	rotate: -2deg;
+	width: max(35vw, 40vh);
+	border: 2px solid var(--color-text);
+}
+smallTicket {
+	position: relative;
+	box-sizing: border-box;
+	width: 100%;
+	height: 8vh;
+	background-color: #ffffff;
+	border-top: 2px dashed rgba(0, 0, 0, 0.394);
+	transition: all 200ms ease-in-out;
+	cursor: pointer;
+}
+smallTicket:not(.cut):hover {
+	rotate: 1deg;
+	margin-top: 0.5rem;
+	height: 10vh;
+}
+smallTicket:not(.cut) img.roll {
+	position: absolute;
+	top: calc(100% - 1px);
+	width: 115.8%;
+	right: 0;
+	height: auto;
+}
+smallTicket:not(.cut) img:not(.roll) {
+	display: none;
+}
+smallTicket.cut {
+	background-color: unset;
+	cursor: default;
+}
+smallTicket.cut img {
+	width: 100%;
+	transform: translateY(-5%);
+}
+smallTicket.cut img.roll {
+	display: none;
+}
+smallTicket.cut p {
+	display: none;
+}
+smallTicket:not(.cut)::before {
+	content: "cut from here:";
+	position: absolute;
+	box-sizing: border-box;
+	width: max-content;
+	height: max-content;
+	font: jetbrainsmono;
+	font-size: calc(0.5 * clamp(1.2rem, 1vw, 2rem));
+	color: var(--color-text);
+	left: 2.5%;
+	top: 1%;
+	z-index: 10;
+	opacity: 0.7;
+}
+ticket::before {
+	content: "R";
+	position: absolute;
+	box-sizing: border-box;
+	width: max-content;
+	height: max-content;
+	font: jetbrainsmono;
+	font-size: calc(5 * clamp(1.2rem, 1vw, 2rem));
+	color: var(--color-marker);
+	right: 10%;
+	top: 10%;
+	rotate: -19deg;
+	z-index: 10;
+	opacity: 0.7;
+}
+ticket::after {
+	content: "";
+	position: absolute;
+	box-sizing: border-box;
+	width: 0.3rem;
+	height: 100%;
+	background-color: var(--color-text);
+	left: 0.7rem;
+	top: 0%;
+}
+ad {
+	position: absolute;
+	box-sizing: border-box;
+	width: max-content;
+	height: auto;
+}
+ad img {
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+}
+.title {
+	text-transform: uppercase;
+}
+.big {
+	font-size: calc(2 * clamp(1.2rem, 1vw, 2rem));
+}
+.med {
+	font-size: calc(1.3 * clamp(1.2rem, 1vw, 2rem)) !important;
+}
+.code {
+	color: var(--color-text);
+	font-family: "jetbrainsmono";
+	font-size: clamp(0.9rem, 0.7vw, 1.4rem);
+}
+.codeStyle {
+	display: block;
+	position: relative;
+	height: max-content;
+	text-align: center !important;
+	overflow: hidden;
+}
+.horiz {
+	display: flex;
+	justify-content: center;
+}
+custombutton {
+	position: relative;
+	border-radius: 0.5rem;
+	height: 100%;
+	box-sizing: border-box;
+	/* margin: 1rem 0rem 1rem 0rem; */
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	display: flex;
+	align-items: center;
+	background-color: var(--color-buttonbg);
+	cursor: pointer;
+	transition: transform 150ms ease-in-out;
+	user-select: none;
+}
+.right {
+	border-radius: 0 0.5rem 0.5rem 0;
+}
+.left {
+	border-radius: 0.5rem 0 0 0.5rem;
+}
+custombutton:not(.right):hover {
+	transform: scale(1.1);
+}
+.smaller {
+	font-size: calc(0.5 * clamp(1.2rem, 1vw, 2rem));
+}
+.small {
+	font-size: calc(0.8 * clamp(1.2rem, 1vw, 2rem));
+}
+.med {
+	font-size: calc(1.3 * clamp(1.2rem, 1vw, 2rem));
+}
+.big {
+	font-weight: bold;
+	font-size: calc(2.5 * clamp(1.2rem, 1vw, 2rem));
+}
+.footer {
+	position: absolute;
+	bottom: 0;
+	margin: 2rem;
+}
+.flex {
+	display: flex;
+}
+.center {
+	justify-content: center;
+	align-items: center;
+}
+group {
+	display: block;
+	position: relative;
+	box-sizing: border-box;
+	width: 100%;
+	height: max-content;
+}
+group p.small {
+	width: 100%;
+	text-align: left;
+}
+ticketHolder {
+	gap: 1%;
+	display: inline-block;
+	position: absolute;
+	box-sizing: border-box;
+	left: 5%;
+	top: calc(100% - 1px);
+	width: 95%;
+	z-index: 10;
+}
+
+input {
+	border-radius: 0;
+	color: var(--color-invert) !important;
+	font-family: chaparralpro;
+	padding: 0.5rem;
+	width: 100%;
+	border: none !important;
+}
+sign {
+	height: 30%;
+	width: 70%;
+	cursor: pointer;
+}
+sign img {
+	opacity: 0.05;
+	transition: opacity 2s ease-in-out;
+}
+sign.clicked img {
+	opacity: 0.9;
+	cursor: default;
+}
+.fillH {
+	width: 100%;
+}
+.margintop {
+	margin-top: 0.5rem;
+}
+.margintop2 {
+	margin-top: 2rem;
+}
+header {
+	box-sizing: border-box;
+	padding: 0.5rem 1rem;
+	display: flex;
+	position: fixed;
+	top: 0;
+	height: max-content;
+	width: 100%;
+	z-index: 10;
+	justify-content: space-between;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+mashflix {
+	position: relative;
+	box-sizing: border-box;
+	background-color: var(--color-buttonbg);
+	letter-spacing: 0.07rem;
+	padding: 0.2rem 0.5rem;
+	border-radius: 0.4rem;
+	font-weight: bold;
+	cursor: default;
+	user-select: none;
+}
+footer mashflix {
+	background-color: #000000;
+}
+thead {
+	user-select: none;
+}
+table {
+	border: none;
+	border-spacing: 0;
+	width: 100%;
+	text-align: left;
+}
+td {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.normalized {
+	width: min(80vw, 100vh);
+}
+.preview {
+	align-items: center;
+	display: flex;
+	height: min(40vw, 30vh);
+	gap: 2rem;
+}
+banner {
+	display: block;
+	height: 100%;
+	position: relative;
+	box-sizing: border-box;
+	transition: transform 400ms ease-in-out;
+	user-select: none;
+}
+banner:hover {
+	transform: scale(1.05);
+}
+.alignLeft {
+	text-align: left !important;
+}
+.alignRight {
+	text-align: right !important;
+}
+banner img {
+	height: 100%;
+}
+footer {
+	background-color: var(--color-buttonbg);
+	height: max-content;
+	padding: 2rem;
+}
+.smallpadding {
+	padding: 0.5rem;
+}
+.imdb {
+	display: inline-block;
+	box-sizing: border-box;
+	background-color: var(--color-imdb);
+	color: var(--color-buttonbg);
+	font-weight: bold;
+	padding: 0.5rem 2rem !important;
+	border-radius: 0.5rem;
+	user-select: none;
+}
+.bgfilm {
+	background-image: url(/bg.webp);
+	background-size: auto 100%;
+	background-origin: border-box;
+	background-position: 50% 0;
+}
+a:has(custombutton) {
+	text-decoration: none;
+}
+a {
+	color: white;
+	width: 100%;
+	margin: 0.5rem 2rem;
+	padding: 0.1rem 1rem;
+	background-color: #000000;
+	text-decoration: none;
+}
+@keyframes fadeIn {
+	from {
+		opacity: 0.8;
+	}
+	to {
+		opacity: 0;
+	}
+}
+@keyframes fadeout {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 0.8;
+	}
+}
+dark {
+	position: absolute;
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	animation-name: fadeIn;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+}
+dark.notmain {
+	animation-name: fadeout !important;
+	animation-duration: 1s !important;
+}
+.seats {
+	margin-top: 5%;
+	border-top: 10px solid var(--color-text);
+	border-top-style: groove;
+	position: relative;
+	box-sizing: border-box;
+	width: 30%;
+	height: 90%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 10%);
+	justify-content: space-between;
+	align-content: center;
+	gap: 0.5rem;
+}
+
+.seat {
+	box-sizing: border-box;
+	position: relative;
+	width: 100%;
+	aspect-ratio: 1;
+	border: 1px solid var(--color-text);
+	border-radius: 6px;
+	cursor: pointer;
+	transition:
+		transform 0.1s,
+		background 0.2s;
+}
+
+.seat:hover:not(.occupied) {
+	transform: scale(1.05);
+}
+
+.seat.selected {
+	background: #606060;
+}
+
+.seat.occupied {
+	background: #000000;
+	cursor: not-allowed;
+}

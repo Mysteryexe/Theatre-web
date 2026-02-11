@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KingsTheatre</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <wrapper>
+        <page class="flex center">
+            <shop>
+                <closeText onclick="backToMenu(this)">
+                    <p class="big">Back to menu</p>
+                </closeText>
+                <group class="flex center" style="flex-direction: column;">
+                    <p class="big title">Menu</p>
+                    <p onclick="updateShop(this)" class="med flex center"
+                        style="justify-content: space-between !important; width:100%">Buttered
+                        Popcorn
+                        (Giant Box) <span class="big">$5</span></p>
+                    <p onclick="updateShop(this)" class="med flex center"
+                        style="justify-content: space-between !important; width:100%">Junior Mints <span
+                            class=" big">$2</span></p>
+                    <p onclick="updateShop(this)" class="med flex center"
+                        style="justify-content: space-between !important; width:100%">Milk Duds <span
+                            class=" big">$2</span></p>
+                    <p onclick="updateShop(this)" class="med flex center"
+                        style="justify-content: space-between !important; width:100%">Ice Cold Coca-Cola
+                        <span class=" big">$2</span>
+                    </p>
+                    <p onclick="updateShop(this)" class="med flex center"
+                        style="justify-content: space-between !important; width:100%">Chocolate BonBons
+                        <span class=" big">$3</span>
+                    </p>
+                    <p id="total" class="big">Total: $0</p>
+                </group>
+                <newsPaperBoy><img src="/content/images/newspaperboy.png" alt="newspaperboy"></newsPaperBoy>
+            </shop>
+        </page>
+    </wrapper>
+    <script src="/script.js"></script>
+</body>
+
+</html>
